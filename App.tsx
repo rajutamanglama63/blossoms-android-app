@@ -1,14 +1,15 @@
 import Button from "@/components/Button";
+import Navigation from "@/navigation";
+import theme, { Text } from "@/utils/theme";
+import { ThemeProvider } from "@shopify/restyle";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Button />
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <Navigation />
+    </ThemeProvider>
   );
 }
 
