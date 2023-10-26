@@ -10,8 +10,16 @@ const Stack = createNativeStackNavigator<CatagoriesStackParamList>();
 const CatagoriesStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Catagories" component={CatagoriesScreen} />
-      <Stack.Screen name="Catagory" component={CatagoryScreen} />
+      <Stack.Screen
+        name="Catagories"
+        component={CatagoriesScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Catagory"
+        component={CatagoryScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

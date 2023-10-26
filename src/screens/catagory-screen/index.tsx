@@ -1,12 +1,15 @@
+import SafeAreaWrapper from "@/components/shared/safe-area-wrapper";
 import { Box, Text } from "@/utils/theme";
 import React from "react";
 import { StyleSheet } from "react-native";
 
 const CatagoryScreen = () => {
   return (
-    <Box>
-      <Text>CatagoryScreen</Text>
-    </Box>
+    <SafeAreaWrapper>
+      <Box>
+        <Text>CatagoryScreen</Text>
+      </Box>
+    </SafeAreaWrapper>
   );
 };
 

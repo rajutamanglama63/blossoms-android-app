@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Text } from "@/utils/theme";
 import { useNavigation } from "@react-navigation/native";
 import { AuthScreenNavigationType } from "@/navigation/types";
+import SafeAreaWrapper from "@/components/shared/safe-area-wrapper";
 
 const SignUpScreen = () => {
   const navigation = useNavigation<AuthScreenNavigationType<"SignUp">>();
@@ -10,10 +11,12 @@ const SignUpScreen = () => {
     navigation.navigate("SignIn");
   };
   return (
-    <Box>
-      <Text>Sign up screen</Text>
-      <Button title="Navigate to signup" onPress={navigateToSigninScreen} />
-    </Box>
+    <SafeAreaWrapper>
+      <Box>
+        <Text>Sign up screen</Text>
+        <Button title="Navigate to signup" onPress={navigateToSigninScreen} />
+      </Box>
+    </SafeAreaWrapper>
   );
 };
 
