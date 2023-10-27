@@ -7,8 +7,8 @@ import AppStackNavigator from "./app-stack-navigator";
 const Navigation = () => {
   return (
     <NavigationContainer>
-      {/* <AuthStackNavigator /> */}
-      <AppStackNavigator />
+      <AuthStackNavigator />
+      {/* <AppStackNavigator /> */}
     </NavigationContainer>
   );
 };

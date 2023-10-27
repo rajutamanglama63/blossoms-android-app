@@ -12,8 +12,13 @@ const SignUpScreen = () => {
   };
   return (
     <SafeAreaWrapper>
-      <Box>
-        <Text>Sign up screen</Text>
+      <Box px="5.5" mt={"13"} flex={1}>
+        <Text variant="textXl" fontWeight="700">
+          Welcome to Blossoms!
+        </Text>
+        <Text variant="textXl" fontWeight="700">
+          Your journey start here
+        </Text>
         <Button title="Navigate to signup" onPress={navigateToSigninScreen} />
       </Box>
     </SafeAreaWrapper>
