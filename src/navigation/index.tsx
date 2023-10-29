@@ -1,14 +1,26 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthStackNavigator from "./auth-stack-navigator";
 import AppStackNavigator from "./app-stack-navigator";
+import { AuthContext } from "@/context/auth-context";
+import { Box } from "@/utils/theme";
 
 const Navigation = () => {
+  const authContext = useContext(AuthContext);
+
+  if (authContext?.loading) {
+    <Box flex={1} alignItems="center" justifyContent="center">
+      <ActivityIndicator size={"large"} />
+    </Box>;
+  }
   return (
     <NavigationContainer>
-      <AuthStackNavigator />
-      {/* <AppStackNavigator /> */}
+      {authContext?.token !== "" ? (
+        <AppStackNavigator />
+      ) : (
+        <AuthStackNavigator />
+      )}
     </NavigationContainer>
   );
 };

@@ -1,18 +1,20 @@
-import Button from "@/components/Button";
+import { AuthProvider } from "@/context/auth-context";
 import Navigation from "@/navigation";
-import theme, { Text } from "@/utils/theme";
+import theme from "@/utils/theme";
 import { ThemeProvider } from "@shopify/restyle";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaProvider>
-        <Navigation />
-        <StatusBar translucent />
-      </SafeAreaProvider>
+      <AuthProvider>
+        <SafeAreaProvider>
+          <Navigation />
+          <StatusBar translucent />
+        </SafeAreaProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

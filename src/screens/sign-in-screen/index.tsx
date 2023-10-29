@@ -1,16 +1,23 @@
 import { Pressable, StyleSheet } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Text } from "@/utils/theme";
 import { useNavigation } from "@react-navigation/native";
 import { AuthScreenNavigationType } from "@/navigation/types";
 import SafeAreaWrapper from "@/components/shared/safe-area-wrapper";
 import Input from "@/components/shared/input";
 import Button from "@/components/shared/Button";
+import { AuthContext } from "@/context/auth-context";
 
 const SignInScreen = () => {
   const navigation = useNavigation<AuthScreenNavigationType<"SignIn">>();
+
+  const authContext = useContext(AuthContext);
   const navigateToSignupScreen = () => {
     navigation.navigate("SignUp");
+  };
+
+  const userLogin = () => {
+    authContext?.login();
   };
   return (
     <SafeAreaWrapper>
@@ -32,7 +39,7 @@ const SignInScreen = () => {
         </Pressable>
         <Box mb="5.5" />
 
-        <Button label="Login" onPress={navigateToSignupScreen} uppercase />
+        <Button label="Login" onPress={userLogin} uppercase />
       </Box>
     </SafeAreaWrapper>
   );
