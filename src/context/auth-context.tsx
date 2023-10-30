@@ -1,14 +1,7 @@
-import { getUsers, loginUser } from "@/services/apis";
-import { BLOSSOM_TOKEN_NAME, saveToken } from "@/services/config";
+import { loginUser } from "@/services/apis";
+import { BLOSSOM_TOKEN_NAME } from "@/services/config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  createContext,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 type AuthContextType = {
   loading: boolean;
@@ -24,6 +17,7 @@ type AuthContextProviderType = {
 };
 
 type LoginUserTypes = Omit<IUser, "name">;
+
 export const AuthContext = createContext<AuthContextType | undefined>(
   undefined
 );
@@ -57,7 +51,6 @@ export const AuthProvider = ({ children }: AuthContextProviderType) => {
     try {
       setLoading(true);
       let _token = await AsyncStorage.getItem(BLOSSOM_TOKEN_NAME);
-      console.log("token: ", _token);
       // Check if _token is null and provide a default value if necessary
       //   if (_token === null) {
       //     setToken("");

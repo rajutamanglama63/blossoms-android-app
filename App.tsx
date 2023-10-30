@@ -1,4 +1,5 @@
 import { AuthProvider } from "@/context/auth-context";
+import { CatagoriesProvider } from "@/context/categories-context";
 import Navigation from "@/navigation";
 import theme from "@/utils/theme";
 import { ThemeProvider } from "@shopify/restyle";
@@ -10,10 +11,12 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <SafeAreaProvider>
-          <Navigation />
-          <StatusBar translucent />
-        </SafeAreaProvider>
+        <CatagoriesProvider>
+          <SafeAreaProvider>
+            <Navigation />
+            <StatusBar translucent />
+          </SafeAreaProvider>
+        </CatagoriesProvider>
       </AuthProvider>
     </ThemeProvider>
   );

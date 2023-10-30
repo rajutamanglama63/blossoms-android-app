@@ -28,3 +28,8 @@ export const getUsers = async () => {
   const allUsers = await fetcher("user");
   console.log("allUsers: ", allUsers);
 };
+
+export const getCategories = async () => {
+  const allCategories = await fetcher("catagories");
+  return allCategories;
+};
