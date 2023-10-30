@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Text } from "@/utils/theme";
 import { useNavigation } from "@react-navigation/native";
 import { AuthScreenNavigationType } from "@/navigation/types";
@@ -16,8 +16,13 @@ const SignInScreen = () => {
     navigation.navigate("SignUp");
   };
 
-  const userLogin = () => {
-    authContext?.login();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  type LoginUserTypes = Omit<IUser, "name">;
+
+  const userLogin = ({ email, password }: LoginUserTypes) => {
+    authContext?.login({ email, password });
   };
   return (
     <SafeAreaWrapper>
@@ -27,9 +32,19 @@ const SignInScreen = () => {
         </Text>
 
         <Box mb="6" />
-        <Input label="E-mail" />
+        <Input
+          label="E-mail"
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
         <Box mb="2" />
-        <Input label="Password" />
+        <Input
+          label="Password"
+          placeholder="Password"
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+        />
         {/* <Box mt="5.5" /> */}
 
         <Pressable onPress={navigateToSignupScreen}>
@@ -39,7 +54,11 @@ const SignInScreen = () => {
         </Pressable>
         <Box mb="5.5" />
 
-        <Button label="Login" onPress={userLogin} uppercase />
+        <Button
+          label="Login"
+          onPress={() => userLogin({ email, password })}
+          uppercase
+        />
       </Box>
     </SafeAreaWrapper>
   );
