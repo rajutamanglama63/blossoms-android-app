@@ -57,3 +57,6 @@ export type AuthScreenNavigationType<
   NativeStackNavigationProp<AuthStackParamList, RouteName>,
   NativeStackNavigationProp<AppStackParamList, "Root">
 >;
+
+export type CategoriesNavigationType =
+  NativeStackNavigationProp<CatagoriesStackParamList>;

@@ -4,6 +4,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { CatagoriesStackParamList } from "./types";
 import CatagoryScreen from "@/screens/catagory-screen";
+import CreateCategoryScreen from "@/screens/create-category-screen";
 
 const Stack = createNativeStackNavigator<CatagoriesStackParamList>();
 
@@ -18,6 +19,11 @@ const CatagoriesStackNavigator = () => {
       <Stack.Screen
         name="Catagory"
         component={CatagoryScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CreateCatagory"
+        component={CreateCategoryScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

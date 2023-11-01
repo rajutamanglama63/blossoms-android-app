@@ -1,3 +1,5 @@
+import Catagory from "@/components/categories/category";
+import CreateNewList from "@/components/categories/create-new-list";
 import Loader from "@/components/shared/loader";
 import SafeAreaWrapper from "@/components/shared/safe-area-wrapper";
 import { CatagoriesContext } from "@/context/categories-context";
@@ -13,9 +15,7 @@ const CatagoriesScreen = () => {
   }
 
   const renderItem = ({ item }: { item: ICategory }) => (
-    <Box bg="lightGray" p="4" borderRadius="rounded-5xl">
-      <Text>{item.name}</Text>
-    </Box>
+    <Catagory category={item} />
   );
   return (
     <SafeAreaWrapper>
@@ -26,9 +26,12 @@ const CatagoriesScreen = () => {
 
         <FlatList
           data={categoriesContext?.categoriesData}
+          showsVerticalScrollIndicator={false}
           renderItem={renderItem}
           ItemSeparatorComponent={() => <Box height={14} />}
+          keyExtractor={(item) => item.id}
         />
+        <CreateNewList />
       </Box>
     </SafeAreaWrapper>
   );
