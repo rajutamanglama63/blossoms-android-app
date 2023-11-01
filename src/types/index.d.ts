@@ -5,14 +5,14 @@ interface IUser {
 }
 
 interface IIcon {
-  name: string;
   id: string;
+  name: string;
   symbol: string;
 }
 
 interface IColor {
-  name: string;
   id: string;
+  name: string;
   code: string;
 }
 
