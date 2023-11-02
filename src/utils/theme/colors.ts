@@ -10,6 +10,11 @@ export const palette = {
   gray8: "#29262E",
   transparent: "transparent",
   grey: "#878787",
+  blue: "#338DFF",
+  purple: "#8E44AD",
+  yellow: "#F5B041",
+  green: "#22c55e",
+  orange: "#fdba74",
 
   /**tailwind colors as palette */
 
@@ -204,6 +209,11 @@ export const colors = {
   transparent: palette.transparent,
   grey: palette.grey,
   primary: palette.primary,
+  blue: palette.blue,
+  purple: palette.purple,
+  yellow: palette.yellow,
+  green: palette.green,
+  orange: palette.orange,
 
   /**tailwind colors */
 
