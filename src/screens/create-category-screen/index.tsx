@@ -1,14 +1,17 @@
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SafeAreaWrapper from "@/components/shared/safe-area-wrapper";
 import { Box, Text, Theme } from "@/utils/theme";
 import NavigateBack from "@/components/shared/navigate-back";
 import { useTheme } from "@shopify/restyle";
 import { getColors, getIcons } from "@/utils/helpers";
 import Button from "@/components/shared/Button";
+import { CatagoriesContext } from "@/context/categories-context";
 
 const CreateCategoryScreen = () => {
   const theme = useTheme<Theme>();
+
+  const categoryContext = useContext(CatagoriesContext);
 
   const COLORS = getColors();
   const ICONS = getIcons();
@@ -17,15 +20,30 @@ const CreateCategoryScreen = () => {
   const DEFAULT_ICONS = ICONS[0];
 
   const [newCategory, setNewCategory] = useState<
-    Omit<ICategory, "id" | "user" | "isEditable">
+    Omit<ICategory, "id" | "userId">
   >({
     name: "",
+    isEditable: true,
     color: DEFAULT_COLORS,
     icon: DEFAULT_ICONS,
+    colorId: DEFAULT_COLORS.id,
+    iconId: DEFAULT_ICONS.id,
   });
 
   const createNewCategory = async () => {
-    console.log(`newCategory`, JSON.stringify(newCategory, null, 2));
+    const { color, icon } = newCategory;
+    // const { color, icon, ...newCategoryWithoutColorAndIcon } = newCategory;
+    // console.log(
+    //   `newCategory`,
+    //   JSON.stringify(newCategoryWithoutColorAndIcon, null, 2)
+    // );
+    const new_category = {
+      name: newCategory.name,
+      isEditable: newCategory.isEditable,
+      colorId: color.id,
+      iconId: icon.id,
+    };
+    await categoryContext?.createCategories(new_category);
     try {
     } catch (error) {
       console.error("error in createNewCategory: ", error);

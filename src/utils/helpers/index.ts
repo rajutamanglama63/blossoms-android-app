@@ -39,7 +39,7 @@ export const getColors = () => {
     categoriesContext?.colors.length !== 0
       ? categoriesContext?.colors.map((_colorItemObj) => {
           return {
-            id: `color_${_colorItemObj.id}`,
+            id: _colorItemObj.id,
             code: _colorItemObj.code,
             name: _colorItemObj.name,
           };
@@ -81,7 +81,7 @@ export const getIcons = () => {
     categoriesContext?.icons.length !== 0
       ? categoriesContext?.icons.map((_iconItemObj) => {
           return {
-            id: `icon_${_iconItemObj.id}`,
+            id: _iconItemObj.id,
             name: _iconItemObj.name,
             symbol: _iconItemObj.symbol,
           };

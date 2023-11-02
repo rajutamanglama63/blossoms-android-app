@@ -22,7 +22,8 @@ export const saveToken = async (key: string, value: string) => {
 axios.interceptors.request.use(async (req) => {
   try {
     const access_token = await AsyncStorage.getItem(BLOSSOM_TOKEN_NAME);
-    req.headers.Authorization = access_token;
+    console.log("access_token: ", access_token);
+    req.headers.Authorization = `Bearer ${access_token}`;
     return req;
   } catch (error) {
     return req;

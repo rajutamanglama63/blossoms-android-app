@@ -1,3 +1,4 @@
+import { getUserSpecificCategories, postCategory } from "@/services/apis";
 import { fetcher } from "@/services/config";
 import { ReactNode, createContext, useEffect, useState } from "react";
 
@@ -6,12 +7,14 @@ type CategoriesContextType = {
   colors: IColor[];
   icons: IIcon[];
   categoriesData: never[];
-  //   fetchCategories: (url: string) => Promise<any>;
+  createCategories: (category: PostCategoryTypes) => void;
 };
 
 type CategoriesContextProviderType = {
   children: ReactNode;
 };
+
+type PostCategoryTypes = Omit<ICategory, "color" | "icon" | "userId" | "id">;
 
 export const CatagoriesContext = createContext<
   CategoriesContextType | undefined
@@ -25,11 +28,24 @@ export const CatagoriesProvider = ({
   const [icons, setIcons] = useState([]);
   const [categoriesData, setCategoriesData] = useState([]);
 
-  const fetchCategories = async (url: string) => {
+  const createCategories = async (category: PostCategoryTypes) => {
     setLoading(true);
     try {
-      const allCategories = await fetcher(url);
-      // console.log("all: ", allCategories);
+      const res = await postCategory(category);
+      console.log("res after posting new category: ", res);
+    } catch (error) {
+      console.error("Error in posting category", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchCategories = async () => {
+    setLoading(true);
+    try {
+      const allCategories = await getUserSpecificCategories();
+      console.log("all: ", allCategories);
       setCategoriesData(allCategories);
     } catch (error) {
       console.error("Error in fetchingCategories", error);
@@ -66,13 +82,13 @@ export const CatagoriesProvider = ({
   };
 
   useEffect(() => {
-    fetchCategories("catagories");
+    fetchCategories();
     fetchColors("color");
     fetchIcons("icon");
   }, []);
   return (
     <CatagoriesContext.Provider
-      value={{ loading, categoriesData, colors, icons }}
+      value={{ loading, categoriesData, colors, icons, createCategories }}
     >
       {children}
     </CatagoriesContext.Provider>

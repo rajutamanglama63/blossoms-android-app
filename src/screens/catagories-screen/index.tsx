@@ -29,7 +29,7 @@ const CatagoriesScreen = () => {
           showsVerticalScrollIndicator={false}
           renderItem={renderItem}
           ItemSeparatorComponent={() => <Box height={14} />}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => JSON.stringify(item.id)}
         />
         <CreateNewList />
       </Box>
